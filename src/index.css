@@ -1,0 +1,352 @@
+/* ==========================================================
+   ESTILOS GENERALES Y RESET BÁSICO
+   ========================================================== */
+
+/* Afecta a toda la página web (cuerpo del documento) */
+body {
+    /* Define la tipografía principal y secundarias de respaldo */
+    font-family: Arial, sans-serif;
+    
+    /* Elimina los márgenes externos por defecto del navegador */
+    margin: 0;
+    
+    /* Elimina el relleno interno por defecto */
+    padding: 0;
+    
+    /* Aplica un color de fondo gris claro tenue a toda la web */
+    background-color: whitesmoke;
+    
+    /* Define el color del texto principal en negro */
+    color: black;
+}
+
+/* ==========================================================
+   ENCABEZADO Y NAVEGACIÓN (header, nav)
+   ========================================================== */
+
+/* Contenedor del encabezado superior */
+header {
+    /* Color de fondo gris oscuro para la barra superior */
+    background-color: darkslategrey;
+    
+    /* Espaciado interno: 15px arriba/abajo y 20px a los lados */
+    padding: 15px 20px;
+}
+
+/* Barra de navegación principal */
+nav {
+    /* Activa el modelo Flexbox para alinear elementos en fila */
+    display: flex;
+    
+    /* Empuja el logo a la izquierda y las opciones a la derecha */
+    justify-content: space-between;
+    
+    /* Centra los elementos verticalmente */
+    align-items: center;
+    
+    /* Define el ancho máximo que puede tener la barra */
+    max-width: 1000px;
+    
+    /* Centra horizontalmente la barra en la pantalla */
+    margin: 0 auto;
+}
+
+/* Enlaces directos dentro de la navegación (Logo y accesos) */
+nav a {
+    /* Color de texto blanco */
+    color: white;
+    
+    /* Elimina el subrayado por defecto de los enlaces */
+    text-decoration: none;
+    
+    /* Aplica texto en negrita */
+    font-weight: bold;
+}
+
+/* Lista desordenada del menú de navegación */
+nav ul {
+    /* Quita los puntos/viñetas por defecto de la lista */
+    list-style: none;
+    
+    /* Elimina el margen de la lista */
+    margin: 0;
+    
+    /* Elimina el relleno interno de la lista */
+    padding: 0;
+    
+    /* Usa Flexbox para poner los ítems de la lista en fila */
+    display: flex;
+    
+    /* Define una separación de 15px entre cada ítem */
+    gap: 15px;
+}
+
+/* Enlaces que están dentro de los ítems de la lista del menú */
+nav ul li a {
+    /* Color del texto gris claro */
+    color: lightgray;
+    
+    /* Grosor de letra normal (sin negrita) */
+    font-weight: normal;
+}
+
+/* Estado al pasar el cursor (hover) sobre los enlaces del menú */
+nav ul li a:hover {
+    /* Cambia el texto a blanco brillante al pasar el puntero */
+    color: white;
+}
+
+/* ==========================================================
+   ESTRUCTURA PRINCIPAL Y SECCIONES (main, section)
+   ========================================================== */
+
+/* Contenedor del contenido principal de la página */
+main {
+    /* Limita el ancho del contenido principal a 1000px */
+    max-width: 1000px;
+    
+    /* Aplica 20px arriba/abajo y centra horizontalmente */
+    margin: 20px auto;
+    
+    /* Margen interno de 20px a los lados para pantallas chicas */
+    padding: 0 20px;
+}
+
+/* Secciones independientes dentro del main */
+section {
+    /* Fondo de la tarjeta en blanco puro */
+    background-color: white;
+    
+    /* Relleno interno de 20px dentro de la sección */
+    padding: 20px;
+    
+    /* Espacio de 20px debajo de cada sección para separarlas */
+    margin-bottom: 20px;
+    
+    /* Bordes ligeramente redondeados a 5px */
+    border-radius: 5px;
+}
+
+/* Títulos principales y secundarios (h1, h2, h3) */
+h1, h2, h3 {
+    /* Color de los títulos en negro */
+    color: black;
+    
+    /* Elimina el espacio superior que trae por defecto los h1-h3 */
+    margin-top: 0;
+}
+
+/* ==========================================================
+   TARJETAS DE PRODUCTOS (article)
+   ========================================================== */
+
+/* Selecciona una sección SOLO si contiene artículos adentro (Grilla) */
+section:has(article) {
+    /* Convierte la sección en un contenedor flexible */
+    display: flex;
+    
+    /* Permite que los artículos bajen a otra fila si no caben */
+    flex-wrap: wrap;
+    
+    /* Separación de 20px entre cada tarjeta */
+    gap: 20px;
+    
+    /* Distribuye las tarjetas con espacio uniforme entre ellas */
+    justify-content: space-between;
+}
+
+/* Título secundario dentro de la sección de productos */
+section:has(article) h2 {
+    /* Hace que el título ocupe el 100% del ancho (arriba de las tarjetas) */
+    width: 100%;
+}
+
+/* Tarjeta individual de producto o artículo */
+article {
+    /* Fondo gris suave para la tarjeta */
+    background-color: whitesmoke;
+    
+    /* Borde delgado de 1px en gris claro */
+    border: 1px solid lightgray;
+    
+    /* Esquinas redondeadas a 5px */
+    border-radius: 5px;
+    
+    /* Relleno interno de 15px */
+    padding: 15px;
+    
+    /* Ancho fijo de 200px para cada tarjeta */
+    width: 200px;
+    
+    /* Centra todo el texto dentro de la tarjeta */
+    text-align: center;
+}
+
+/* Imágenes que están dentro de las tarjetas de producto */
+article img {
+    /* Asegura que la imagen no sobrepase el ancho de la tarjeta */
+    max-width: 100%;
+    
+    /* Mantiene la proporción de la imagen sin deformarla */
+    height: auto;
+    
+    /* Bordes redondeados para la imagen */
+    border-radius: 5px;
+}
+
+/* ==========================================================
+   FORMULARIOS Y ENTRADAS DE DATOS (label, input, textarea)
+   ========================================================== */
+
+/* Etiquetas de texto encima de los campos */
+label {
+    /* Forzar a que la etiqueta ocupe una línea completa */
+    display: block;
+    
+    /* Espacio superior de 10px para separar del campo anterior */
+    margin-top: 10px;
+    
+    /* Texto en negrita */
+    font-weight: bold;
+}
+
+/* Cajas de texto de una línea y áreas de texto multilínea */
+input, textarea {
+    /* Ocupa todo el ancho disponible del contenedor */
+    width: 100%;
+    
+    /* Pero no permite que crezca más allá de 400px */
+    max-width: 400px;
+    
+    /* Espaciado interno de 8px para que el texto respire */
+    padding: 8px;
+    
+    /* Separación superior de 5px respecto al label */
+    margin-top: 5px;
+    
+    /* Borde delgado de color plata */
+    border: 1px solid silver;
+    
+    /* Bordes ligeramente redondeados de 4px */
+    border-radius: 4px;
+    
+    /* Incluye el padding y el borde dentro del ancho total calculando mejor la caja */
+    box-sizing: border-box;
+}
+
+/* Área de texto para mensajes de contacto */
+textarea {
+    /* Altura fija inicial de 100px */
+    height: 100px;
+    
+    /* Permite redimensionar solo de forma vertical */
+    resize: vertical;
+}
+
+/* ==========================================================
+   BOTONES Y ENLACES CON ASPECTO DE BOTÓN
+   ========================================================== */
+
+/* Botones nativos y enlaces configurados para verse como botones */
+button, article a, section > a {
+    /* Permite dar dimensiones de bloque manteniendo el flujo del texto */
+    display: inline-block;
+    
+    /* Color de fondo azul (RoyalBlue) */
+    background-color: royalblue;
+    
+    /* Texto de color blanco */
+    color: white;
+    
+    /* Relleno de 10px arriba/abajo y 15px a los lados */
+    padding: 10px 15px;
+    
+    /* Elimina el subrayado del enlace */
+    text-decoration: none;
+    
+    /* Quita el borde por defecto de los botones */
+    border: none;
+    
+    /* Bordes redondeados a 4px */
+    border-radius: 4px;
+    
+    /* Cambia la flecha del ratón por la "manito" al ponerse encima */
+    cursor: pointer;
+    
+    /* Tamaño de fuente de 14px */
+    font-size: 14px;
+    
+    /* Separación superior de 10px */
+    margin-top: 10px;
+}
+
+/* Estado hover para botones y enlaces de acción */
+button:hover, article a:hover, section > a:hover {
+    /* Cambia a azul marino (Navy) al pasar el cursor encima */
+    background-color: navy;
+}
+
+/* ==========================================================
+   MENSAJES DE RESPUESTA Y VIDEO
+   ========================================================== */
+
+/* Párrafo especial que muestra mensajes de validación en JS */
+p#mensaje {
+    /* Texto en negrita para llamar la atención */
+    font-weight: bold;
+    
+    /* Texto de color azul para mensajes del sistema */
+    color: royalblue;
+    
+    /* Separación superior de 15px */
+    margin-top: 15px;
+}
+
+/* Reproductores de video/iframe embebidos */
+iframe {
+    /* Ancho adaptable al 100% del contenedor */
+    max-width: 100%;
+    
+    /* Quita el borde por defecto del reproductor */
+    border: none;
+    
+    /* Bordes redondeados a 5px */
+    border-radius: 5px;
+}
+
+/* ==========================================================
+   PIE DE PÁGINA (footer)
+   ========================================================== */
+
+/* Contenedor del pie de página */
+footer {
+    /* Fondo completamente negro */
+    background-color: black;
+    
+    /* Color de texto gris */
+    color: gray;
+    
+    /* Centra el texto del copyright */
+    text-align: center;
+    
+    /* Relleno interno de 15px */
+    padding: 15px;
+    
+    /* Separación respecto a la última sección de arriba */
+    margin-top: 30px;
+}
+
+/* Enlaces que están dentro del footer */
+footer a {
+    /* Color de texto gris claro */
+    color: lightgray;
+    
+    /* Sin subrayado */
+    text-decoration: none;
+}
+
+/* Estado hover para los enlaces del footer */
+footer a:hover {
+    /* Muestra el subrayado solo cuando el cursor está encima */
+    text-decoration: underline;
+}
