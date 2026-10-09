@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>De HTML a React — factory.io</title>
+<title>factory.io — De HTML a React</title>
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
   html, body { height: 100%; }
@@ -20,10 +20,10 @@
   .slide {
     display: none;
     min-height: 100vh;
-    padding: 7vh 7vw 14vh;
+    padding: 6vh 7vw 13vh;
     flex-direction: column;
     justify-content: center;
-    gap: 1rem;
+    gap: .9rem;
   }
   .slide.active { display: flex; animation: fade .35s ease; }
   @keyframes fade { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
@@ -36,45 +36,51 @@
     background-clip: text;
     color: transparent;
   }
-  h2 { font-size: clamp(1.6rem, 3.4vw, 2.5rem); color: #fbbf24; }
+  h2 { font-size: clamp(1.5rem, 3.2vw, 2.4rem); color: #fbbf24; }
   h2 .num { color: #22d3ee; font-size: .6em; vertical-align: middle; margin-right: .5rem; letter-spacing: .1em; }
-  .subtitle { font-size: clamp(1.1rem, 2.2vw, 1.6rem); color: #94a3b8; }
+  .subtitle { font-size: clamp(1.05rem, 2.1vw, 1.5rem); color: #94a3b8; }
   .kicker { color: #22d3ee; letter-spacing: .18em; text-transform: uppercase; font-size: .85rem; }
 
   ul.bullets { list-style: none; }
-  ul.bullets li { margin: .65rem 0; font-size: clamp(1rem, 1.9vw, 1.3rem); padding-left: 1.6rem; position: relative; }
+  ul.bullets li { margin: .5rem 0; font-size: clamp(.95rem, 1.8vw, 1.25rem); padding-left: 1.6rem; position: relative; }
   ul.bullets li::before { content: "⚡"; position: absolute; left: 0; }
   ul.bullets li b { color: #fbbf24; }
   ul.bullets li code, p code { background: #1e293b; padding: .1em .4em; border-radius: 6px; font-size: .9em; }
 
   .cols { display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; align-items: start; }
-  .card { background: rgba(17, 26, 46, .85); border: 1px solid #1e293b; border-radius: 14px; padding: 1.1rem 1.25rem; }
-  .tag { display: inline-block; font-size: .75rem; font-weight: 700; letter-spacing: .12em; padding: .25rem .7rem; border-radius: 999px; margin-bottom: .7rem; }
+  .card { background: rgba(17, 26, 46, .85); border: 1px solid #1e293b; border-radius: 14px; padding: 1rem 1.2rem; }
+  .tag { display: inline-block; font-size: .75rem; font-weight: 700; letter-spacing: .12em; padding: .25rem .7rem; border-radius: 999px; margin-bottom: .6rem; }
   .tag.antes { background: rgba(127, 29, 29, .35); color: #fca5a5; border: 1px solid #7f1d1d; }
   .tag.ahora { background: rgba(20, 83, 45, .35); color: #86efac; border: 1px solid #14532d; }
 
   pre {
     background: #0a0f1e; border: 1px solid #1e293b; border-radius: 10px;
-    padding: .9rem 1.1rem; overflow-x: auto;
-    font-size: clamp(.78rem, 1.5vw, 1rem); line-height: 1.55;
+    padding: .8rem 1rem; overflow-x: auto;
+    font-size: clamp(.75rem, 1.4vw, .95rem); line-height: 1.55;
   }
   code, pre { font-family: 'Cascadia Code', 'Fira Code', Consolas, monospace; }
-  .t { color: #7ee787; }  /* etiquetas */
-  .a { color: #79c0ff; }  /* atributos */
-  .s { color: #a5d6ff; }  /* strings */
-  .c { color: #8b949e; font-style: italic; } /* comentarios */
-  .k { color: #ff7b72; }  /* keywords */
-  .f { color: #d2a8ff; }  /* funciones/componentes */
+  .t { color: #7ee787; }
+  .a { color: #79c0ff; }
+  .s { color: #a5d6ff; }
+  .c { color: #8b949e; font-style: italic; }
+  .k { color: #ff7b72; }
+  .f { color: #d2a8ff; }
 
   .concept {
     border-left: 4px solid #22d3ee; background: rgba(34, 211, 238, .08);
-    padding: .8rem 1.1rem; border-radius: 0 10px 10px 0;
-    font-size: clamp(.95rem, 1.8vw, 1.2rem);
+    padding: .7rem 1rem; border-radius: 0 10px 10px 0;
+    font-size: clamp(.9rem, 1.7vw, 1.15rem);
   }
   .concept b { color: #22d3ee; }
 
-  .tree { font-family: Consolas, monospace; color: #94a3b8; font-size: clamp(.9rem, 1.7vw, 1.1rem); line-height: 1.7; }
+  .tree { font-family: Consolas, monospace; color: #94a3b8; font-size: clamp(.85rem, 1.6vw, 1.05rem); line-height: 1.6; }
   .tree b { color: #e2e8f0; }
+
+  table.bs { width: 100%; border-collapse: collapse; font-size: clamp(.85rem, 1.6vw, 1.05rem); }
+  table.bs td, table.bs th { border: 1px solid #1e293b; padding: .5rem .8rem; text-align: left; }
+  table.bs th { background: #16213a; color: #fbbf24; }
+  table.bs td code { background: #1e293b; padding: .1em .4em; border-radius: 6px; font-size: .85em; }
+  table.bs tr:nth-child(even) td { background: rgba(30, 41, 59, .3); }
 
   .controls {
     position: fixed; bottom: 1.2rem; left: 50%; transform: translateX(-50%);
@@ -105,22 +111,24 @@
     h1 { color: #111; -webkit-text-fill-color: #111; }
     h2 { color: #b45309; }
     .card, pre { background: #f1f5f9; border-color: #cbd5e1; }
+    table.bs th { background: #e2e8f0; color: #111; }
+    table.bs td, table.bs th { border-color: #cbd5e1; }
   }
 </style>
 </head>
 <body>
 
 <div class="progress"><div class="progress-bar" id="bar"></div></div>
-<div class="brand">⚡ factory.io · Migración a React</div>
+<div class="brand">⚡ factory.io · Evaluación Parcial N°2</div>
 
 <main id="deck">
 
   <!-- 1. PORTADA -->
   <section class="slide center active">
     <div class="big-emoji">⚡</div>
-    <p class="kicker">factory.io · Proyecto</p>
+    <p class="kicker">factory.io · Desarrollo Full Stack II</p>
     <h1>De HTML estático a React</h1>
-    <p class="subtitle">Cómo migramos nuestro sitio web a una Single Page Application</p>
+    <p class="subtitle">Migración a una SPA con React 19 + Vite, Bootstrap y pruebas con Vitest</p>
     <p class="subtitle" style="font-size:1rem; margin-top:2rem;">Integrantes: <b style="color:#e2e8f0;">Ricardo</b> y <b style="color:#e2e8f0;">Cristobal</b> · 2026</p>
   </section>
 
@@ -129,10 +137,10 @@
     <p class="kicker">El punto de partida</p>
     <h2>¿Cómo era el sitio en HTML clásico?</h2>
     <ul class="bullets">
-      <li><b>Un archivo .html por página:</b> index.html, productos.html, registro.html, carrito.html…</li>
+      <li><b>Un archivo .html por página:</b> index, productos, registro, carrito… (8 archivos).</li>
       <li>El <b>menú y el footer se copiaban y pegaban</b> en cada página.</li>
       <li>Navegar con <code>&lt;a href="productos.html"&gt;</code> <b>recargaba toda la página</b>.</li>
-      <li>Las validaciones leían y modificaban el DOM <b>"a mano"</b>:</li>
+      <li>Las validaciones leían el DOM <b>"a mano"</b>:</li>
     </ul>
     <pre><code><span class="c">&lt;!-- JavaScript clásico --&gt;</span>
 <span class="k">const</span> rut = document.<span class="f">getElementById</span>(<span class="s">'rut'</span>).value;
@@ -144,17 +152,19 @@ document.<span class="f">getElementById</span>(<span class="s">'msg'</span>).tex
     <p class="kicker">El destino</p>
     <h2>¿Cómo es ahora con React + Vite?</h2>
     <ul class="bullets">
-      <li><b>Un solo</b> <code>index.html</code> con un <code>&lt;div id="root"&gt;</code> vacío: React dibuja todo ahí dentro.</li>
-      <li>La interfaz se divide en <b>componentes reutilizables</b>.</li>
+      <li><b>Un solo</b> <code>index.html</code> con un <code>&lt;div id="root"&gt;</code> vacío: React dibuja todo ahí.</li>
+      <li>La interfaz se divide en <b>componentes reutilizables</b> con <b>props y estados</b>.</li>
       <li><b>React Router</b> cambia de "página" <b>sin recargar</b> (SPA).</li>
-      <li>El <b>estado</b> (<code>useState</code>) controla formularios y mensajes.</li>
+      <li><b>Bootstrap 5</b> entrega el diseño responsivo con su sistema de grid.</li>
+      <li><b>10 pruebas unitarias</b> con Vitest + Testing Library.</li>
     </ul>
     <pre class="tree">src/
-├─ <b>main.jsx</b>        → monta la aplicación en el navegador
-├─ <b>App.jsx</b>         → define las rutas del sitio
-├─ <b>components/</b>     → Header y Footer (se escriben UNA vez)
-└─ <b>pages/</b>          → Home, Productos, Nosotros, Blog,
-                          Contacto, Carrito, Login, Registro</pre>
+├─ <b>main.jsx</b>        → monta React e importa Bootstrap
+├─ <b>App.jsx</b>         → rutas del sitio (React Router)
+├─ <b>components/</b>     → Header, Footer, ProductoCard (props)
+├─ <b>pages/</b>          → Home, Productos, Carrito, Registro, Login…
+├─ <b>data/</b>           → productos.js (el catálogo como DATOS)
+└─ <b>*.test.jsx</b>      → 10 pruebas unitarias</pre>
   </section>
 
   <!-- 4. PASO 1 -->
@@ -178,7 +188,8 @@ document.<span class="f">getElementById</span>(<span class="s">'msg'</span>).tex
 <span class="t">&lt;/body&gt;</span></code></pre>
       </div>
     </div>
-    <pre><code><span class="c">// main.jsx — React toma el control del div#root</span>
+    <pre><code><span class="c">// main.jsx — React toma el control del div#root y cargamos Bootstrap</span>
+<span class="k">import</span> <span class="s">'bootstrap/dist/css/bootstrap.min.css'</span>;
 ReactDOM.<span class="f">createRoot</span>(document.<span class="f">getElementById</span>(<span class="s">'root'</span>)).<span class="f">render</span>(<span class="t">&lt;<span class="f">App</span> /&gt;</span>);</code></pre>
     <p class="concept"><b>Idea clave:</b> el HTML queda casi vacío; <b>React construye la página con JavaScript</b>.</p>
   </section>
@@ -210,59 +221,57 @@ ReactDOM.<span class="f">createRoot</span>(document.<span class="f">getElementBy
 }</code></pre>
   </section>
 
-  <!-- 6. PASO 3 -->
+  <!-- 6. PASO 3: PROPS -->
   <section class="slide">
-    <h2><span class="num">PASO 3</span> JSX = HTML dentro de JavaScript</h2>
-    <p style="font-size:clamp(1rem,1.9vw,1.25rem);">Casi todo el HTML se puede pegar tal cual… con <b>4 reglas de conversión</b>:</p>
+    <h2><span class="num">PASO 3</span> Props: componentes personalizables</h2>
+    <p style="font-size:clamp(.95rem,1.8vw,1.2rem);">Creamos <code>ProductoCard</code>: <b>una sola tarjeta</b> que se personaliza con datos distintos mediante <b>props</b>:</p>
+    <pre><code><span class="k">export function</span> <span class="f">ProductoCard</span>({ nombre, precio, imagen, onAgregar }) {
+  <span class="k">return</span> (
+    <span class="t">&lt;article</span> <span class="a">className</span>=<span class="s">"card h-100 shadow-sm"</span><span class="t">&gt;</span>
+      <span class="t">&lt;img</span> <span class="a">src</span>={imagen} <span class="a">alt</span>={nombre} <span class="t">/&gt;</span>
+      <span class="t">&lt;h3&gt;</span>{nombre}<span class="t">&lt;/h3&gt;</span>
+      <span class="t">&lt;p&gt;</span>Precio: ${precio.<span class="f">toLocaleString</span>(<span class="s">'es-CL'</span>)}<span class="t">&lt;/p&gt;</span>
+      {onAgregar <span class="k">&amp;&amp;</span> <span class="t">&lt;button</span> <span class="a">onClick</span>={() =&gt; <span class="f">onAgregar</span>(nombre)}<span class="t">&gt;</span>
+        Añadir al carrito
+      <span class="t">&lt;/button&gt;</span>}
+    <span class="t">&lt;/article&gt;</span>
+  );
+}</code></pre>
     <div class="cols">
-      <div class="card">
-        <span class="tag antes">HTML</span>
-        <pre><code><span class="t">&lt;label</span> <span class="a">for</span>=<span class="s">"rut"</span><span class="t">&gt;</span>RUT:<span class="t">&lt;/label&gt;</span>
-<span class="t">&lt;div</span> <span class="a">class</span>=<span class="s">"caja"</span><span class="t">&gt;</span>
-<span class="t">&lt;button</span> <span class="a">onclick</span>=<span class="s">"validar()"</span><span class="t">&gt;</span></code></pre>
-      </div>
-      <div class="card">
-        <span class="tag ahora">JSX</span>
-        <pre><code><span class="t">&lt;label</span> <span class="a">htmlFor</span>=<span class="s">"rut"</span><span class="t">&gt;</span>RUT:<span class="t">&lt;/label&gt;</span>
-<span class="t">&lt;div</span> <span class="a">className</span>=<span class="s">"caja"</span><span class="t">&gt;</span>
-<span class="t">&lt;button</span> <span class="a">onClick</span>={validar}<span class="t">&gt;</span></code></pre>
-      </div>
+      <p class="concept" style="margin:0;"><b>Props = "parámetros" del componente:</b> el padre decide qué datos muestra cada tarjeta.</p>
+      <p class="concept" style="margin:0;"><b>Renderizado condicional:</b> el botón solo aparece si la prop <code>onAgregar</code> existe.</p>
     </div>
-    <ul class="bullets">
-      <li><code>class</code> → <code>className</code> y <code>for</code> → <code>htmlFor</code> (son palabras reservadas de JS).</li>
-      <li>Las <b>llaves <code>{ }</code></b> insertan JavaScript dentro del HTML: variables, funciones, expresiones.</li>
-    </ul>
   </section>
 
-  <!-- 7. PASO 4 -->
+  <!-- 7. PASO 4: LISTAS -->
   <section class="slide">
-    <h2><span class="num">PASO 4</span> Navegación: de <code style="font-size:.7em;">&lt;a href&gt;</code> a <code style="font-size:.7em;">&lt;Link&gt;</code></h2>
+    <h2><span class="num">PASO 4</span> Listas: de copiar y pegar a datos + <code style="font-size:.7em;">.map()</code></h2>
     <div class="cols">
       <div class="card">
-        <span class="tag antes">ANTES · recarga completa</span>
-        <pre><code><span class="t">&lt;a</span> <span class="a">href</span>=<span class="s">"productos.html"</span><span class="t">&gt;</span>
-  Productos
-<span class="t">&lt;/a&gt;</span></code></pre>
-        <p style="margin-top:.6rem;">El navegador descarga otra página entera: <b>parpadeo y espera</b>.</p>
+        <span class="tag antes">ANTES · HTML repetido</span>
+        <p style="margin:.4rem 0;">Cada producto era un <code>&lt;article&gt;</code> <b>copiado a mano</b> en productos.html.</p>
+        <p>¿Agregar un producto? → copiar, pegar y editar otro bloque HTML.</p>
       </div>
       <div class="card">
-        <span class="tag ahora">AHORA · sin recargar</span>
-        <pre><code><span class="t">&lt;<span class="f">Link</span></span> <span class="a">to</span>=<span class="s">"/productos"</span><span class="t">&gt;</span>
-  Productos
-<span class="t">&lt;/<span class="f">Link</span>&gt;</span></code></pre>
-        <p style="margin-top:.6rem;">React Router <b>intercambia el componente</b> al instante.</p>
+        <span class="tag ahora">AHORA · datos en productos.js</span>
+        <pre><code><span class="c">// Productos.jsx — un map() genera TODO el catálogo</span>
+{productos.<span class="f">map</span>((p) =&gt; (
+  <span class="t">&lt;<span class="f">ProductoCard</span></span>
+    <span class="a">key</span>={p.id}
+    <span class="a">nombre</span>={p.nombre}
+    <span class="a">precio</span>={p.precio}
+    <span class="a">imagen</span>={p.imagen}
+    <span class="a">onAgregar</span>={agregarAlCarrito}
+  <span class="t">/&gt;</span>
+))}</code></pre>
       </div>
     </div>
-    <pre><code><span class="c">// App.jsx — el mapa del sitio</span>
-<span class="t">&lt;<span class="f">Route</span></span> <span class="a">path</span>=<span class="s">"/"</span>          <span class="a">element</span>={<span class="t">&lt;<span class="f">Home</span> /&gt;</span>} <span class="t">/&gt;</span>
-<span class="t">&lt;<span class="f">Route</span></span> <span class="a">path</span>=<span class="s">"/productos"</span> <span class="a">element</span>={<span class="t">&lt;<span class="f">Productos</span> /&gt;</span>} <span class="t">/&gt;</span>
-<span class="t">&lt;<span class="f">Route</span></span> <span class="a">path</span>=<span class="s">"/registro"</span>  <span class="a">element</span>={<span class="t">&lt;<span class="f">Registro</span> /&gt;</span>} <span class="t">/&gt;</span></code></pre>
-    <p class="concept"><b>SPA (Single Page Application):</b> una sola página; el router solo cambia <b>qué componente se muestra</b>.</p>
+    <p class="concept"><b>Idea clave:</b> agregar un producto ahora es agregar <b>un dato al array</b>, sin tocar el diseño.</p>
   </section>
 
-  <!-- 8. PASO 5 -->
+  <!-- 8. PASO 5: ESTADO -->
   <section class="slide">
-    <h2><span class="num">PASO 5</span> Formularios: del DOM "a mano" al estado</h2>
+    <h2><span class="num">PASO 5</span> Estado: del DOM "a mano" a <code style="font-size:.7em;">useState</code></h2>
     <div class="cols">
       <div class="card">
         <span class="tag antes">ANTES · leer el DOM</span>
@@ -271,7 +280,7 @@ ReactDOM.<span class="f">createRoot</span>(document.<span class="f">getElementBy
   .<span class="f">getElementById</span>(<span class="s">'rut'</span>).value;</code></pre>
       </div>
       <div class="card">
-        <span class="tag ahora">AHORA · useState (Registro.jsx)</span>
+        <span class="tag ahora">AHORA · Registro.jsx</span>
         <pre><code><span class="k">const</span> [rut, setRut] = <span class="f">useState</span>(<span class="s">''</span>);
 
 <span class="t">&lt;input</span> <span class="a">value</span>={rut}
@@ -279,87 +288,115 @@ ReactDOM.<span class="f">createRoot</span>(document.<span class="f">getElementBy
       </div>
     </div>
     <ul class="bullets">
-      <li>El dato <b>vive en el componente</b> (una variable de estado), no escondido en el HTML.</li>
-      <li>Cada tecla actualiza el estado → <b>React repinta solo</b> lo que cambió.</li>
+      <li>El dato <b>vive en el componente</b> (variable de estado), no escondido en el HTML.</li>
+      <li>El mensaje de validación se muestra solo cuando existe: <code>{mensaje &amp;&amp; &lt;p&gt;{mensaje}&lt;/p&gt;}</code></li>
     </ul>
     <p class="concept"><b>Idea clave:</b> el estado es la <b>fuente de la verdad</b>; la pantalla es su reflejo.</p>
   </section>
 
-  <!-- 9. PASO 6 -->
+  <!-- 9. PASO 6: CARRITO FUNCIONAL -->
   <section class="slide">
-    <h2><span class="num">PASO 6</span> Validación y mensajes: renderizado condicional</h2>
-    <p style="font-size:clamp(1rem,1.9vw,1.25rem);">La lógica de validación <b>es la misma de antes</b> (RUT de 8–9 caracteres, dominios <code>@duoc.cl</code>, <code>@gmail.com</code>…). Lo que cambia es <b>cómo se muestra el resultado</b>:</p>
-    <div class="cols">
-      <div class="card">
-        <span class="tag antes">ANTES · modificar el DOM</span>
-        <pre><code>document.<span class="f">getElementById</span>(<span class="s">'msg'</span>)
-  .textContent = <span class="s">'El RUT debe tener
-   entre 8 y 9 caracteres.'</span>;</code></pre>
-      </div>
-      <div class="card">
-        <span class="tag ahora">AHORA · el HTML reacciona al estado</span>
-        <pre><code><span class="f">setMensaje</span>(<span class="s">'El RUT debe tener
- entre 8 y 9 caracteres.'</span>);
+    <h2><span class="num">PASO 6</span> Carrito funcional con estado</h2>
+    <p style="font-size:clamp(.95rem,1.8vw,1.2rem);">El carrito pasó de ser <b>HTML fijo</b> a una <b>lista viva</b> que se puede modificar:</p>
+    <pre><code><span class="k">const</span> [items, setItems] = <span class="f">useState</span>([…]);
 
-{mensaje <span class="k">&amp;&amp;</span> <span class="t">&lt;p&gt;</span>{mensaje}<span class="t">&lt;/p&gt;</span>}</code></pre>
-      </div>
-    </div>
-    <p class="concept"><b>Renderizado condicional:</b> <code>{mensaje &amp;&amp; &lt;p&gt;…&lt;/p&gt;}</code> significa "muestra el <code>&lt;p&gt;</code> <b>solo si hay mensaje</b>". No hay que borrar nada a mano.</p>
-  </section>
+<span class="k">const</span> eliminarProducto = (id) =&gt;
+  <span class="f">setItems</span>(items.<span class="f">filter</span>((item) =&gt; item.id !== id));
 
-  <!-- 10. PASO 7 -->
-  <section class="slide">
-    <h2><span class="num">PASO 7</span> Listas: de copiar y pegar a <code style="font-size:.7em;">.map()</code></h2>
-    <div class="cols">
-      <div class="card">
-        <span class="tag antes">ANTES · HTML repetido</span>
-        <p style="margin:.4rem 0;">En productos.html había <b>un <code>&lt;article&gt;</code> copiado por cada producto</b>.</p>
-        <p>¿Agregar un producto? → copiar, pegar y editar otro bloque HTML.</p>
-      </div>
-      <div class="card">
-        <span class="tag ahora">EN REACT · datos + map()</span>
-        <pre><code>{productos.<span class="f">map</span>((p) =&gt; (
-  <span class="t">&lt;article</span> <span class="a">key</span>={p.id}<span class="t">&gt;</span>
-    <span class="t">&lt;h3&gt;</span>{p.nombre}<span class="t">&lt;/h3&gt;</span>
-    <span class="t">&lt;p&gt;</span>Precio: {p.precio}<span class="t">&lt;/p&gt;</span>
-  <span class="t">&lt;/article&gt;</span>
-))}</code></pre>
-      </div>
-    </div>
+<span class="k">const</span> total = items.<span class="f">reduce</span>(
+  (suma, item) =&gt; suma + item.precio * item.cantidad, 0
+);</code></pre>
     <ul class="bullets">
-      <li>El catálogo se convierte en <b>datos</b> (un array) y React genera el HTML por nosotros.</li>
-      <li>Agregar un producto = <b>agregar un dato</b>, sin tocar el diseño.</li>
-    </ul>
-    <p class="concept"><b>Próximo paso natural del proyecto:</b> nuestro <code>Productos.jsx</code> ya está listo para mover sus productos a un array.</p>
-  </section>
-
-  <!-- 11. BONUS -->
-  <section class="slide">
-    <p class="kicker">Bonus de la migración</p>
-    <h2>Pruebas automáticas (algo imposible en HTML plano)</h2>
-    <p style="font-size:clamp(1rem,1.9vw,1.25rem);">Antes, probar el formulario significaba <b>abrir el navegador y hacer clic a mano</b>. Ahora, con <b>Vitest + Testing Library</b>, las pruebas se ejecutan solas con <code>npm test</code>:</p>
-    <pre><code><span class="c">// Registro.Test.jsx — prueba real del proyecto</span>
-<span class="f">fireEvent</span>.<span class="f">change</span>(inputRut, { target: { value: <span class="s">'123'</span> } });
-<span class="f">fireEvent</span>.<span class="f">click</span>(botonRegistrar);
-
-<span class="f">expect</span>(screen.<span class="f">getByText</span>(
-  <span class="s">'El RUT debe tener entre 8 y 9 caracteres.'</span>
-)).<span class="f">toBeInTheDocument</span>();</code></pre>
-    <ul class="bullets">
-      <li>El proyecto incluye <b>3 pruebas</b> del registro: RUT corto ❌, correo no permitido ❌ y registro exitoso ✅.</li>
-      <li>Si alguien rompe la validación en el futuro, <b>el test lo detecta al instante</b>.</li>
+      <li><b>Eliminar</b> un producto → <code>filter</code> crea una nueva lista → React repinta solo.</li>
+      <li>El <b>total se calcula</b> automáticamente con <code>reduce</code> cada vez que cambia la lista.</li>
+      <li>Carrito vacío → mensaje distinto: <code>No hay productos en el carrito.</code></li>
     </ul>
   </section>
 
-  <!-- 12. CONCLUSIÓN -->
+  <!-- 10. PASO 7: BOOTSTRAP -->
+  <section class="slide">
+    <h2><span class="num">PASO 7</span> Diseño responsivo con Bootstrap</h2>
+    <table class="bs">
+      <tr><th>Clase Bootstrap</th><th>Qué hace en el proyecto</th></tr>
+      <tr><td><code>col-12 col-sm-6 col-md-4</code></td><td>Productos: <b>1 columna en móvil</b>, 2 en tablet, 3 en desktop</td></tr>
+      <tr><td><code>container</code></td><td>Contenido centrado con márgenes automáticos</td></tr>
+      <tr><td><code>form-control</code></td><td>Inputs de Registro/Login/Contacto estilizados</td></tr>
+      <tr><td><code>btn btn-primary / btn-danger</code></td><td>Botones con estilo consistente</td></tr>
+      <tr><td><code>alert alert-success / alert-info</code></td><td>Mensajes de validación visibles</td></tr>
+      <tr><td><code>card / card-body / shadow-sm</code></td><td>Tarjetas de producto</td></tr>
+      <tr><td><code>nav / nav-link</code></td><td>Menú de navegación</td></tr>
+    </table>
+    <p class="concept"><b>Responsivo sin escribir CSS propio:</b> las clases de Bootstrap adaptan el sitio a cada pantalla. <b>(En la demo: achicamos la ventana y las tarjetas se reordenan solas).</b></p>
+  </section>
+
+  <!-- 11. PRUEBAS -->
+  <section class="slide">
+    <p class="kicker">Calidad del código</p>
+    <h2>10 pruebas unitarias con Vitest</h2>
+    <table class="bs">
+      <tr><th>Archivo de prueba</th><th>N°</th><th>Qué verifica</th></tr>
+      <tr><td><code>Registro.test.jsx</code></td><td>4</td><td>RUT corto ❌ · dominio no permitido ❌ · contraseña vacía ❌ · registro exitoso ✅</td></tr>
+      <tr><td><code>ProductoCard.test.jsx</code></td><td>3</td><td>Renderiza <b>props</b> · llama al <b>mock</b> onAgregar · oculta botón sin la prop</td></tr>
+      <tr><td><code>Carrito.test.jsx</code></td><td>3</td><td>Total $820.000 · eliminar recalcula · comprar vacía el carrito</td></tr>
+    </table>
+    <pre><code><span class="c">// Ejemplo real: Carrito.test.jsx</span>
+<span class="f">fireEvent</span>.<span class="f">click</span>(botonesEliminar[0]);
+<span class="f">expect</span>(screen.<span class="f">getByText</span>(<span class="s">'Total Estimado: $640.000'</span>)).<span class="f">toBeInTheDocument</span>();</code></pre>
+  </section>
+
+  <!-- 12. MOCKS Y COBERTURA -->
+  <section class="slide">
+    <h2>Proceso de testeo: mocks y cobertura</h2>
+    <div class="cols">
+      <div class="card">
+        <span class="tag ahora">MOCKS con vi.fn()</span>
+        <pre><code><span class="k">const</span> agregarMock = <span class="f">vi.fn</span>();
+<span class="f">render</span>(<span class="t">&lt;<span class="f">ProductoCard</span></span> {…p}
+  <span class="a">onAgregar</span>={agregarMock} <span class="t">/&gt;</span>);
+
+<span class="f">fireEvent</span>.<span class="f">click</span>(boton);
+
+<span class="f">expect</span>(agregarMock)
+  .<span class="f">toHaveBeenCalledWith</span>(<span class="s">'Procesador Intel i5'</span>);</code></pre>
+        <p style="margin-top:.5rem;">El mock <b>simula la función</b> y registra cómo fue llamada, sin ejecutar la lógica real.</p>
+      </div>
+      <div class="card">
+        <span class="tag ahora">COBERTURA DE CÓDIGO</span>
+        <pre><code><span class="c"># vite.config.js</span>
+coverage: {
+  provider: <span class="s">'v8'</span>,
+  reporter: [<span class="s">'text'</span>, <span class="s">'html'</span>],
+}</code></pre>
+        <p style="margin-top:.5rem;"><code>npm run coverage</code> genera un <b>reporte HTML</b> que muestra qué líneas cubren las pruebas: Carrito.jsx llega al <b>87,5%</b>.</p>
+      </div>
+    </div>
+    <p class="concept"><b>Flujo completo:</b> entorno configurado (jsdom + jest-dom) → 10 pruebas → mocks → análisis de resultados → reporte de cobertura.</p>
+  </section>
+
+  <!-- 13. DEMO -->
+  <section class="slide center">
+    <p class="kicker">Demostración en vivo</p>
+    <h2 style="text-align:center;">Demo por terminal</h2>
+    <pre style="text-align:left; display:inline-block; min-width:min(90%,42rem);"><code><span class="c"># 1. Ejecutar las 10 pruebas</span>
+npm test          <span class="c"># → Tests 10 passed (10) ✅</span>
+
+<span class="c"># 2. Reporte de cobertura</span>
+npm run coverage  <span class="c"># → tabla + coverage/index.html</span>
+
+<span class="c"># 3. Sitio en vivo</span>
+npm run dev       <span class="c"># → http://localhost:5173</span></code></pre>
+    <p class="subtitle" style="max-width:55rem;">En el sitio: agregar productos al carrito, eliminarlos y ver el total recalcular · probar validaciones del registro · achicar la ventana para ver el diseño responsivo de Bootstrap.</p>
+  </section>
+
+  <!-- 14. CONCLUSIÓN -->
   <section class="slide center">
     <h2 style="text-align:center;">Conclusión</h2>
-    <p class="subtitle" style="max-width: 60rem;">El contenido del sitio es el mismo. Lo que cambió es <b style="color:#fbbf24;">cómo lo organizamos</b>:</p>
+    <p class="subtitle" style="max-width: 60rem;">El contenido del sitio es el mismo. Lo que cambió es <b style="color:#fbbf24;">cómo lo construimos</b>:</p>
     <ul class="bullets" style="text-align:left; display:inline-block;">
-      <li><b>Componentes</b> → escribir una vez, reutilizar siempre.</li>
-      <li><b>SPA con React Router</b> → navegación instantánea, sin recargas.</li>
-      <li><b>Estado (useState)</b> → la pantalla refleja los datos, sin tocar el DOM.</li>
-      <li><b>Pruebas automáticas</b> → calidad asegurada con un comando.</li>
+      <li><b>Componentes + props</b> → escribir una vez, personalizar y reutilizar.</li>
+      <li><b>Estado (useState)</b> → formularios y carrito reactivos, sin tocar el DOM.</li>
+      <li><b>Bootstrap</b> → diseño responsivo con su sistema de grid.</li>
+      <li><b>10 pruebas + mocks + cobertura</b> → calidad verificable con un comando.</li>
     </ul>
     <p class="thanks">¿Preguntas? ⚡</p>
   </section>
@@ -368,7 +405,7 @@ ReactDOM.<span class="f">createRoot</span>(document.<span class="f">getElementBy
 
 <div class="controls">
   <button id="prev" aria-label="Anterior">←</button>
-  <span id="counter">1 / 12</span>
+  <span id="counter">1 / 14</span>
   <button id="next" aria-label="Siguiente">→</button>
 </div>
 <div class="hint">Navega con ← → · F11 pantalla completa · Ctrl+P para PDF</div>

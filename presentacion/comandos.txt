@@ -1,0 +1,89 @@
+============================================================
+  COMANDOS PARA LA DEMO — factory.io
+  Ricardo y Cristobal · Evaluacion Parcial N2
+============================================================
+
+PASO 0 — Ir a la carpeta del proyecto
+---------------------------------------
+cd C:\Users\sickr\mi-proyecto
+
+
+PASO 1 — Ejecutar las 10 pruebas unitarias
+---------------------------------------
+npm test
+
+Que deberias ver:
+  Test Files  3 passed (3)
+  Tests  10 passed (10)   <- todo en verde
+
+
+PASO 2 — Generar reporte de cobertura
+---------------------------------------
+npm run coverage
+
+Que deberias ver:
+  Una tabla con porcentajes por archivo
+  (Carrito.jsx llega a 87.5%)
+
+Para abrir el reporte visual en el navegador:
+start coverage\index.html
+
+
+PASO 3 — Levantar el sitio
+---------------------------------------
+npm run dev
+
+Que deberias ver:
+  Local: http://localhost:5173/
+
+Abrir esa URL en el navegador.
+Para detener el servidor: Ctrl + C
+
+
+============================================================
+  QUE MOSTRAR EN EL SITIO (http://localhost:5173)
+============================================================
+
+1. /productos  -> clic en "Anadir al carrito"
+                  aparece mensaje verde de confirmacion
+
+2. /carrito    -> clic en "Eliminar"
+                  el total baja al instante (820.000 -> 640.000)
+                  clic en "Finalizar Compra"
+                  mensaje de exito + carrito vacio + total $0
+
+3. /registro   -> RUT "123"              -> error de largo
+                  correo "@hotmail.com"  -> error de dominio
+                  datos correctos        -> "Registro exitoso!"
+
+4. Achicar la ventana del navegador
+   -> las tarjetas de productos se reordenan solas
+      (3 columnas en desktop -> 1 columna en movil)
+
+5. Navegar por el menu
+   -> las paginas cambian SIN recargar (SPA)
+
+
+============================================================
+  ORDEN SUGERIDO PARA LA DEMO EN VIVO
+============================================================
+
+  1. npm test          (mostrar los 10 tests pasando)
+  2. npm run coverage  (mostrar la tabla de cobertura)
+  3. npm run dev       (abrir el sitio y mostrar carrito,
+                        registro y responsividad)
+
+TIP: deja el "npm run dev" corriendo ANTES de empezar
+     la presentacion para no esperar en la demo.
+
+============================================================
+  POR SI ACASO (errores comunes)
+============================================================
+
+- El comando correcto es: npm run dev
+  (NO "npm dev run" — ese da error)
+
+- Si npm no se reconoce: cerrar y reabrir la terminal
+
+- Si el puerto 5173 esta ocupado, Vite usa otro
+  (revisar la URL que muestra la terminal)
